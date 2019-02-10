@@ -4,8 +4,8 @@ import Layout from "../components/Layout";
 import Weather from "../components/Weather";
 import Form from "../components/Form";
 
-const geo_api = "https://ipstack.com/";
-const API_KEY = "https://openweathermap.org/";
+const geo_api = "c7c9d832fc2fa1ead9d0766d8bcb988d";
+const API_KEY = "eefc9227e0fd1779fba91bfdc0cee891";
 
 export default class IndexPage extends React.PureComponent<{}, any> {
   state: any = {
