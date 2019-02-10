@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
+import { Button } from "./Form";
 
 type Props = {
   title?: string;
@@ -40,13 +41,12 @@ const Layout: React.FunctionComponent<Props> = ({
       <header>
         <nav>
           <Link href="/">
-            <a>Home</a>
+            <Button>Home</Button>
           </Link>{" "}
           |{" "}
           <Link href="/about">
-            <a>About</a>
+            <Button>About</Button>
           </Link>{" "}
-          |{" "}
         </nav>
       </header>
       {children}

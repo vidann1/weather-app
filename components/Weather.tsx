@@ -1,47 +1,62 @@
 import React from "react";
 
 const Weather = (props: any) => (
-  <div className="weather__info">
+  <div>
     {props.city && props.country && (
-      <p className="weather__key">
+      <p>
         Location:
-        <span className="weather__value">
+        <span>
           {" "}
           {props.city}, {props.country}
         </span>
       </p>
     )}
+    {props.city_name && props.country_name && (
+      <p>
+        Current Location:
+        <span>
+          {" "}
+          {props.city_name}, {props.country_name}
+        </span>
+      </p>
+    )}
     {props.temperature && (
-      <p className="weather__key">
+      <p>
         Temperature:
-        <span className="weather__value"> {props.temperature}°C</span>
+        <span> {props.temperature}°C</span>
       </p>
     )}
     {props.humidity && (
-      <p className="weather__key">
+      <p>
         Humidity:
-        <span className="weather__value"> {props.humidity}</span>
+        <span> {props.humidity}</span>
       </p>
     )}
     {props.wind_direction && (
-      <p className="weather__key">
+      <p>
         Wind direction:
-        <span className="weather__value"> {props.wind_direction}° </span>
+        <span> {props.wind_direction}° </span>
       </p>
     )}
     {props.wind_speed && (
-      <p className="weather__key">
+      <p>
         Wind Speed
-        <span className="weather__value"> {props.wind_speed}m/s </span>
+        <span> {props.wind_speed}m/s </span>
       </p>
     )}
-    {props.description && (
-      <p className="weather__key">
+    {props.description && props.icon && (
+      <p>
         Description:
-        <span className="weather__value"> {props.description}</span>
+        <span> {props.description}</span>
+        <img
+          style={{ display: "inline-block" }}
+          src={`http://openweathermap.org/img/w/${props.icon}.png`}
+          alt="icon"
+        />
       </p>
     )}
-    {props.error && <p className="weather__key"> {props.error} </p>}
+
+    {props.error && <p> {props.error} </p>}
   </div>
 );
 
