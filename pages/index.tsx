@@ -48,7 +48,11 @@ export default class IndexPage extends React.PureComponent<{}, any> {
     const country = e.target.elements.country.value;
 
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`,
+      {
+        method: "post",
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+      }
     );
     const data = await api_call.json();
     if (city && country) {
