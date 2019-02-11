@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import styled from "styled-components";
 import { Button } from "./Form";
+import moment from "moment";
 
 type Props = {
   title?: string;
@@ -27,6 +28,7 @@ const Container = styled.div`
   font-family: "Rubik", sans-serif;
 `;
 
+let now = moment().format("dddd, MMMM Do YYYY, h:mm a");
 const Layout: React.FunctionComponent<Props> = ({
   children,
   title = "This is the default title"
@@ -52,7 +54,9 @@ const Layout: React.FunctionComponent<Props> = ({
       {children}
       <footer>
         <hr />
-        <span>(Footer)</span>
+        <span>
+          <p style={{ textAlign: "right", fontSize: "0.9em" }}>{now}</p>
+        </span>
       </footer>
     </Container>
   </Wrapper>

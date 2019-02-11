@@ -31,7 +31,7 @@ export default class IndexPage extends React.PureComponent<{}, any> {
 
   public async componentDidMount() {
     const geo_api_call = await fetch(
-      `http://api.ipstack.com/check?access_key=${geo_api}`
+      `https://api.ipstack.com/check?access_key=${geo_api}`
     );
     const geo_data = await geo_api_call.json();
     console.log(geo_data);
@@ -48,11 +48,7 @@ export default class IndexPage extends React.PureComponent<{}, any> {
     const country = e.target.elements.country.value;
 
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`,
-      {
-        method: "post",
-        headers: { "Content-type": "application/json; charset=UTF-8" }
-      }
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
     if (city && country) {
@@ -86,6 +82,7 @@ export default class IndexPage extends React.PureComponent<{}, any> {
     return (
       <Layout title="Home">
         <h1>Hello Next.js 👋</h1>
+
         <Weather
           city_name={this.state.city_name}
           country_name={this.state.country_name}
