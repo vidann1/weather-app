@@ -4,8 +4,8 @@ import Layout from "../components/Layout";
 import Weather from "../components/Weather";
 import Form from "../components/Form";
 
-const geo_api = "";
-const API_KEY = "";
+const geo_api = process.env.geo_api;
+const API_KEY = process.env.API_KEY;
 
 export default class IndexPage extends React.PureComponent<{}, any> {
   state: any = {
@@ -31,7 +31,7 @@ export default class IndexPage extends React.PureComponent<{}, any> {
 
   public async componentDidMount() {
     const geo_api_call = await fetch(
-      `https://api.ipstack.com/check?access_key=${geo_api}`
+      `http://api.ipstack.com/check?access_key=${geo_api}`
     );
     const geo_data = await geo_api_call.json();
     console.log(geo_data);
@@ -39,8 +39,27 @@ export default class IndexPage extends React.PureComponent<{}, any> {
       city_name: geo_data.city,
       country_name: geo_data.country_name
     });
-  }
+    const city = "London";
+    const country = "UK";
 
+    const forecast_call = await fetch(
+      `http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`
+    );
+    const foreacast_data = await forecast_call.json();
+    console.log(foreacast_data);
+  }
+  /*
+  public getForecast = async (e: any) => {
+    const city = "London";
+    const country = "UK";
+    e.preventDefault();
+    const forecast_call = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric`
+    );
+    const foreacast_data = await forecast_call.json();
+    console.log(foreacast_data);
+  };
+*/
   public getWeather = async (e: any) => {
     e.preventDefault();
 
@@ -48,7 +67,7 @@ export default class IndexPage extends React.PureComponent<{}, any> {
     const country = e.target.elements.country.value;
 
     const api_call = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`
     );
     const data = await api_call.json();
     if (city && country) {
